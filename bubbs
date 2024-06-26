@@ -1,0 +1,30 @@
+let bubbliciousNumbers = [];
+let totalBubbs = 0;
+
+function isPrime(number) {
+  const checkPrime = (nr, limit) => {
+    for (let start = 3; start <= limit; start += 2) {
+      if (0 === nr % start) {
+        return false;
+      }
+    }
+    return nr > 1;
+  };
+
+  return number === 2 || number % 2 !== 0 && checkPrime(number, Math.sqrt(number));
+}
+
+for (let i = 0; i < 100000; i++) {
+  if (isPrime(i)) {
+    bubbliciousNumbers.push(i);
+  }
+}
+bubbliciousNumbers.map((index) => {
+  let hexVal = index.toString(16);
+    hexVal = hexVal.slice(-1);
+    if (hexVal == 'b') {
+      totalBubbs++;
+    }
+});
+
+console.log(totalBubbs);
